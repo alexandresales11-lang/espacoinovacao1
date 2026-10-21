@@ -1,0 +1,6 @@
+{
+  "name": "Espaço Inovação - Festas e Eventos em Jacobina",
+  "description": "Espaço premium para festas e eventos em Jacobina, Bahia. Salão climatizado, área externa com piscina, capacidade para mais de 300 convidados e estrutura de alto padrão.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
