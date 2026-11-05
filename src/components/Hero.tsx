@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { LotusLogo } from './LotusLogo.tsx';
 import { WHATSAPP_NUMBER } from '../data/venueData.ts';
 import {
@@ -11,9 +11,86 @@ import {
   Bath,
   ArrowRight,
   MessageCircle,
+  Volume2,
+  VolumeX,
+  Play,
+  Pause,
 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Browser autoplay policy requires DOM-level muted = true
+    video.defaultMuted = true;
+    video.muted = true;
+    setIsMuted(true);
+
+    const tryPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((err) => {
+            console.warn('Autoplay bloqueado pelo navegador até interação do usuário:', err);
+            setIsPlaying(false);
+          });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener('loadeddata', tryPlay, { once: true });
+      video.addEventListener('canplay', tryPlay, { once: true });
+    }
+
+    // Start video upon first user interaction on the page if autoplay was prevented
+    const handleFirstInteraction = () => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    window.addEventListener('click', handleFirstInteraction, { once: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true });
+
+    return () => {
+      video.removeEventListener('loadeddata', tryPlay);
+      video.removeEventListener('canplay', tryPlay);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const nextMuted = !isMuted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+    }
+  };
+
+  const togglePlay = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
+
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     'Olá Konccy! Estou no site do Espaço Inovação e gostaria de verificar disponibilidade de datas para meu evento.'
   )}`;
@@ -107,29 +184,90 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Showcase */}
+          {/* Right Column: Hero Visual Showcase (Tour em Vídeo) */}
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl p-2 bg-gradient-to-b from-[#C5A059]/40 to-[#0C251C]/20 shadow-xl">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#0C251C]">
-                <img
-                  src="https://i.imgur.com/yw4NkBg.jpeg"
-                  alt="Área da piscina e natureza do Espaço Inovação em Jacobina"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  onError={(e) => {
-                    // Fallback to second image if network blocks one
-                    (e.target as HTMLImageElement).src = 'https://i.imgur.com/CKFRWj4.jpeg';
-                  }}
-                />
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#0C251C] group">
+                <video
+                  ref={videoRef}
+                  src="/assets/tour_espaco_inovacao.mp4"
+                  poster="/assets/tour_poster.jpg"
+                  autoPlay
+                  muted={isMuted}
+                  loop
+                  playsInline
+                  preload="auto"
+                  onClick={() => togglePlay()}
+                  onPlay={() => setIsPlaying(true)}
+                  onPlaying={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  className="w-full h-full object-cover cursor-pointer"
+                >
+                  <source src="/assets/tour_espaco_inovacao.mp4" type="video/mp4" />
+                  Seu navegador não suporta vídeos MP4.
+                </video>
+
+                {/* Central Play Indicator when Paused */}
+                {!isPlaying && (
+                  <button
+                    type="button"
+                    onClick={(e) => togglePlay(e)}
+                    aria-label="Reproduzir vídeo do tour"
+                    className="absolute inset-0 m-auto w-20 h-20 rounded-full bg-[#0C251C]/85 border-2 border-[#E5C378] flex flex-col items-center justify-center text-[#E5C378] shadow-2xl backdrop-blur-md z-20 cursor-pointer hover:scale-110 active:scale-95 transition-all group/btn"
+                  >
+                    <Play className="w-8 h-8 ml-1 text-[#E5C378] fill-[#E5C378]/30 group-hover/btn:fill-[#E5C378] transition-colors" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white mt-0.5">
+                      Assistir
+                    </span>
+                  </button>
+                )}
+
+                {/* Minimalist Floating Audio & Playback Controls */}
+                <div className="absolute top-3.5 right-3.5 z-20 flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={togglePlay}
+                    aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
+                    className="p-2 rounded-full bg-[#0C251C]/75 hover:bg-[#0C251C] text-white backdrop-blur-md border border-[#C5A059]/40 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-3.5 h-3.5 text-[#E5C378]" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5 text-[#E5C378] ml-0.5" />
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleSound}
+                    aria-label={isMuted ? 'Ativar som do vídeo' : 'Desativar som do vídeo'}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0C251C]/75 hover:bg-[#0C251C] text-white backdrop-blur-md border border-[#C5A059]/40 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  >
+                    {isMuted ? (
+                      <>
+                        <VolumeX className="w-3.5 h-3.5 text-[#E5C378]" />
+                        <span className="text-[11px] text-[#E5C378] font-medium tracking-wide">
+                          Ativar som
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="w-3.5 h-3.5 text-[#E5C378]" />
+                        <span className="text-[11px] text-[#E5C378] font-medium tracking-wide">
+                          Com som
+                        </span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
                 {/* Overlaid Elegant Tag */}
-                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[#0C251C] via-[#0C251C]/70 to-transparent">
+                <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[#0C251C] via-[#0C251C]/75 to-transparent pointer-events-none">
                   <div className="flex items-center gap-2 text-xs text-[#E5C378] uppercase tracking-wider font-semibold mb-1">
                     <Sparkles className="w-3.5 h-3.5 text-[#E5C378]" />
-                    <span>Lazer & Sofisticação</span>
+                    <span>Tour Real · Vídeo Oficial</span>
                   </div>
                   <p className="text-white font-serif-luxury text-lg font-medium leading-snug">
-                    Piscina privativa integrada à natureza exuberante
+                    Conheça a experiência única do Espaço Inovação
                   </p>
                 </div>
               </div>
