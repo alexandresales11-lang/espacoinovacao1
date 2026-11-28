@@ -196,7 +196,7 @@ export const Hero: React.FC = () => {
                   muted={isMuted}
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   onClick={() => togglePlay()}
                   onPlay={() => setIsPlaying(true)}
                   onPlaying={() => setIsPlaying(true)}

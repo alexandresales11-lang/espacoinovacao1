@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EVENT_TYPES, WHATSAPP_NUMBER, WHATSAPP_DISPLAY } from '../data/venueData.ts';
+import { EVENT_TYPES, WHATSAPP_NUMBER, WHATSAPP_DISPLAY, imgurThumb } from '../data/venueData.ts';
 import {
   Users,
   Calendar,
@@ -353,9 +353,11 @@ Poderia me informar se essa data está disponível e como podemos agendar uma vi
                   {/* Host note */}
                   <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0E281F] border border-white/5 mb-6">
                     <img
-                      src="https://i.imgur.com/RnP9jNx.jpeg"
+                      src={imgurThumb('https://i.imgur.com/RnP9jNx.jpeg', 'm')}
                       alt="Konccy - Dona do Espaço Inovação"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                       className="w-10 h-10 rounded-full object-cover border border-[#C5A059]"
                     />
                     <div className="text-xs">

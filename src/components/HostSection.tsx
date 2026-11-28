@@ -1,6 +1,6 @@
 import React from 'react';
-import { VENUE_INFO, WHATSAPP_NUMBER } from '../data/venueData.ts';
-import { Heart, Sparkles, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { VENUE_INFO, WHATSAPP_NUMBER, imgurThumb } from '../data/venueData.ts';
+import { Heart, MessageCircle, CheckCircle2 } from 'lucide-react';
 
 export const HostSection: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -19,12 +19,14 @@ export const HostSection: React.FC = () => {
                 <div className="absolute -inset-2.5 rounded-3xl border-2 border-dashed border-[#C5A059]/40 pointer-events-none" />
                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4] w-64 sm:w-72 shadow-xl bg-[#0C251C]">
                   <img
-                    src={VENUE_INFO.hostPhoto}
+                    src={imgurThumb(VENUE_INFO.hostPhoto, 'h')}
                     alt="Konccy - Fundadora e Gestora do Espaço Inovação"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://i.imgur.com/MOQduAR.jpeg';
+                      (e.target as HTMLImageElement).src = imgurThumb('https://i.imgur.com/MOQduAR.jpeg', 'h');
                     }}
                   />
                   <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-[#0C251C] via-[#0C251C]/70 to-transparent text-white text-center">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Waves, Wind, Armchair, Bath, Trees, ArrowRight, MessageCircle } from 'lucide-react';
-import { WHATSAPP_NUMBER } from '../data/venueData.ts';
+import { Waves, Wind, Armchair, Bath, ArrowRight } from 'lucide-react';
+import { imgurThumb } from '../data/venueData.ts';
 
 export const AmbientesSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'piscina' | 'salao' | 'coberta' | 'banheiros'>('piscina');
@@ -133,12 +133,14 @@ export const AmbientesSection: React.FC = () => {
             {/* Visual Photo */}
             <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[460px] bg-[#0C251C]">
               <img
-                src={current.image}
+                src={imgurThumb(current.image, 'h')}
                 alt={current.title}
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://i.imgur.com/yw4NkBg.jpeg';
+                  (e.target as HTMLImageElement).src = imgurThumb('https://i.imgur.com/yw4NkBg.jpeg', 'h');
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden" />

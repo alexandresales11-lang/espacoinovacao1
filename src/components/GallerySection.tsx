@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { GALLERY_IMAGES, VenueImage } from '../data/venueData.ts';
-import { Camera, X, ChevronLeft, ChevronRight, Maximize2, Sparkles } from 'lucide-react';
+import { GALLERY_IMAGES, VenueImage, imgurThumb } from '../data/venueData.ts';
+import { Camera, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 export const GallerySection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('todos');
+  const [showAll, setShowAll] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<VenueImage | null>(null);
 
   const categories = [
@@ -20,6 +21,9 @@ export const GallerySection: React.FC = () => {
     activeCategory === 'todos'
       ? GALLERY_IMAGES
       : GALLERY_IMAGES.filter((img) => img.category === activeCategory);
+
+  const visibleImages =
+    activeCategory === 'todos' && !showAll ? filteredImages.slice(0, 6) : filteredImages;
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -60,7 +64,10 @@ export const GallerySection: React.FC = () => {
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => {
+                setActiveCategory(cat.id);
+                setShowAll(false);
+              }}
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
                 activeCategory === cat.id
                   ? 'bg-[#0C251C] text-white border border-[#C5A059] shadow-sm'
@@ -74,21 +81,24 @@ export const GallerySection: React.FC = () => {
 
         {/* Photo Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredImages.map((image) => (
+          {visibleImages.map((image) => (
             <div
               key={image.id}
               onClick={() => setSelectedImage(image)}
               className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#0C251C] cursor-pointer border border-[#C5A059]/25 shadow-sm hover:shadow-md transition-all duration-300"
             >
               <img
-                src={image.url}
+                src={imgurThumb(image.url, 'l')}
                 alt={image.title}
                 referrerPolicy="no-referrer"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    'https://i.imgur.com/yw4NkBg.jpeg';
+                  const img = e.target as HTMLImageElement;
+                  if (img.src !== image.url) {
+                    img.src = image.url;
+                  }
                 }}
               />
 
@@ -111,6 +121,19 @@ export const GallerySection: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* Expand Gallery Button */}
+        {activeCategory === 'todos' && !showAll && filteredImages.length > 6 && (
+          <div className="mt-10 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0C251C] bg-white hover:bg-[#FAF7F2] border border-[#C5A059] transition-colors shadow-sm cursor-pointer"
+            >
+              Ver todas as {filteredImages.length} fotos do espaço
+            </button>
+          </div>
+        )}
 
         {/* Lightbox Modal */}
         {selectedImage && (
@@ -151,7 +174,7 @@ export const GallerySection: React.FC = () => {
               {/* Image */}
               <div className="rounded-2xl overflow-hidden max-h-[75vh] w-full flex items-center justify-center bg-black">
                 <img
-                  src={selectedImage.url}
+                  src={imgurThumb(selectedImage.url, 'h')}
                   alt={selectedImage.title}
                   referrerPolicy="no-referrer"
                   className="max-h-[75vh] max-w-full object-contain"

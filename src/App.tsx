@@ -3,20 +3,43 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Header } from './components/Header.tsx';
 import { Hero } from './components/Hero.tsx';
-import { AmbientesSection } from './components/AmbientesSection.tsx';
-import { AmenitiesSection } from './components/AmenitiesSection.tsx';
-import { EventQualifier } from './components/EventQualifier.tsx';
-import { PartyCalculator } from './components/PartyCalculator.tsx';
-import { HostSection } from './components/HostSection.tsx';
-import { GallerySection } from './components/GallerySection.tsx';
-import { LocationSection } from './components/LocationSection.tsx';
-import { FaqSection } from './components/FaqSection.tsx';
-import { ReservationForm } from './components/ReservationForm.tsx';
-import { Footer } from './components/Footer.tsx';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp.tsx';
+
+const AmbientesSection = lazy(() =>
+  import('./components/AmbientesSection.tsx').then((m) => ({ default: m.AmbientesSection }))
+);
+const AmenitiesSection = lazy(() =>
+  import('./components/AmenitiesSection.tsx').then((m) => ({ default: m.AmenitiesSection }))
+);
+const EventQualifier = lazy(() =>
+  import('./components/EventQualifier.tsx').then((m) => ({ default: m.EventQualifier }))
+);
+const PartyCalculator = lazy(() =>
+  import('./components/PartyCalculator.tsx').then((m) => ({ default: m.PartyCalculator }))
+);
+const GallerySection = lazy(() =>
+  import('./components/GallerySection.tsx').then((m) => ({ default: m.GallerySection }))
+);
+const HostSection = lazy(() =>
+  import('./components/HostSection.tsx').then((m) => ({ default: m.HostSection }))
+);
+const LocationSection = lazy(() =>
+  import('./components/LocationSection.tsx').then((m) => ({ default: m.LocationSection }))
+);
+const ReservationForm = lazy(() =>
+  import('./components/ReservationForm.tsx').then((m) => ({ default: m.ReservationForm }))
+);
+const FaqSection = lazy(() =>
+  import('./components/FaqSection.tsx').then((m) => ({ default: m.FaqSection }))
+);
+const Footer = lazy(() =>
+  import('./components/Footer.tsx').then((m) => ({ default: m.Footer }))
+);
+const FloatingWhatsApp = lazy(() =>
+  import('./components/FloatingWhatsApp.tsx').then((m) => ({ default: m.FloatingWhatsApp }))
+);
 
 export default function App() {
   return (
@@ -28,39 +51,43 @@ export default function App() {
       <main>
         <Hero />
 
-        {/* Dynamic Highlight of Venue Spaces */}
-        <AmbientesSection />
+        <Suspense fallback={<div className="py-20" />}>
+          {/* Dynamic Highlight of Venue Spaces */}
+          <AmbientesSection />
 
-        {/* Structural 35% Forest Green Amenities Matrix */}
-        <AmenitiesSection />
+          {/* Structural 35% Forest Green Amenities Matrix */}
+          <AmenitiesSection />
 
-        {/* Modern Interactive Pre-Qualification Tool */}
-        <EventQualifier />
+          {/* Modern Interactive Pre-Qualification Tool */}
+          <EventQualifier />
 
-        {/* Instant Practical Party & Drink Calculator */}
-        <PartyCalculator />
+          {/* Instant Practical Party & Drink Calculator */}
+          <PartyCalculator />
 
-        {/* Real Photo Gallery with Lightbox */}
-        <GallerySection />
+          {/* Real Photo Gallery with Lightbox */}
+          <GallerySection />
 
-        {/* Host Section with Konccy */}
-        <HostSection />
+          {/* Host Section with Konccy */}
+          <HostSection />
 
-        {/* Location & Interactive Map */}
-        <LocationSection />
+          {/* Location & Interactive Map */}
+          <LocationSection />
 
-        {/* Express Reservation Form */}
-        <ReservationForm />
+          {/* Express Reservation Form */}
+          <ReservationForm />
 
-        {/* FAQ Section */}
-        <FaqSection />
+          {/* FAQ Section */}
+          <FaqSection />
+        </Suspense>
       </main>
 
-      {/* Quiet Footer */}
-      <Footer />
+      <Suspense fallback={null}>
+        {/* Quiet Footer */}
+        <Footer />
 
-      {/* Quick WhatsApp Floating Contact */}
-      <FloatingWhatsApp />
+        {/* Quick WhatsApp Floating Contact */}
+        <FloatingWhatsApp />
+      </Suspense>
     </div>
   );
 }

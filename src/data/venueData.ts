@@ -9,6 +9,14 @@ export interface VenueImage {
 export const WHATSAPP_NUMBER = '5574991205293';
 export const WHATSAPP_DISPLAY = '(74) 99120-5293';
 
+/**
+ * Returns Imgur's lightweight resized image variant:
+ * 'm' = 320px (~15KB), 'l' = 640px (~50KB), 'h' = 1024px (~100KB)
+ */
+export function imgurThumb(url: string, size: 'm' | 'l' | 'h' = 'h'): string {
+  return url.replace(/(https:\/\/i\.imgur\.com\/[a-zA-Z0-9]+)\.(jpeg|jpg|png)$/i, `$1${size}.$2`);
+}
+
 export const VENUE_INFO = {
   name: 'Espaço Inovação',
   subtitle: 'Espaço para Festas e Eventos',

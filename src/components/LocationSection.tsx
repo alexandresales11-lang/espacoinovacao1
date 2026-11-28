@@ -11,9 +11,9 @@ export const LocationSection: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // Google Maps embed URL for Jacobina, Catuaba
+  // Google Maps embed URL for Segunda Travessa São Francisco de Assis, Catuaba, Jacobina - BA
   const mapEmbedUrl =
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.5!2d-40.518!3d-11.181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7166a0000000001%3A0x0!2sJacobina%2C%20BA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr';
+    'https://maps.google.com/maps?q=Segunda+Travessa+S%C3%A3o+Francisco+de+Assis+Catuaba,+Jacobina+-+BA,+44700-000&t=&z=16&ie=UTF8&iwloc=&output=embed';
 
   return (
     <section id="localizacao" className="py-20 md:py-28 bg-[#FAF7F2] border-t border-[#C5A059]/20">
