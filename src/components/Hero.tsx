@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { LotusLogo } from './LotusLogo.tsx';
 import { WHATSAPP_NUMBER } from '../data/venueData.ts';
 import {
   Users,
@@ -96,51 +95,46 @@ export const Hero: React.FC = () => {
   )}`;
 
   return (
-    <section className="relative pt-24 pb-14 md:pt-32 md:pb-20 overflow-hidden bg-[#FAF7F2]">
+    <section className="relative pt-24 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-[#FAF7F2]">
       {/* Subtle warm glow background matching the reference flyer */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#F3E6CD]/60 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start lg:items-center">
           {/* Left Column: Brand Message & Key Callouts */}
           <div className="lg:col-span-7 flex flex-col items-start">
-            {/* Top Brand Tag with Lotus */}
-            <div className="flex items-center gap-3 mb-4">
-              <LotusLogo size={36} />
-              <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-[0.25em] text-[#C5A059] font-semibold">
-                  Jacobina · Bahia
-                </span>
-                <span className="font-serif-luxury text-sm tracking-wider text-[#0C251C] font-semibold">
-                  ESPAÇO PARA EVENTOS EXCLUSIVOS
-                </span>
-              </div>
+            {/* Clean Editorial Eyebrow (avoids duplicating header Lotus icon) */}
+            <div className="inline-flex items-center gap-2.5 mb-3">
+              <span className="w-7 h-[1.5px] bg-[#C5A059] shrink-0" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.2em] text-[#C5A059] font-semibold">
+                Jacobina · Bahia · Eventos Exclusivos
+              </span>
             </div>
 
-            {/* Signature Greeting Typography from Reference Image */}
+            {/* Signature Greeting Typography without letter collision */}
             <div className="relative mb-3">
-              <span className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0C251C] tracking-tight block">
+              <span className="font-serif-luxury text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-[#0C251C] tracking-tight leading-none block">
                 Sejam
               </span>
-              <span className="font-script-luxury text-5xl sm:text-6xl lg:text-7xl text-[#C5A059] block -mt-3 sm:-mt-5 transform -rotate-1 origin-left">
-                bem vindos
+              <span className="font-script-luxury text-5xl sm:text-6xl lg:text-[4.25rem] text-[#C5A059] leading-[1.05] block mt-1">
+                bem-vindos
               </span>
             </div>
 
             {/* Subheading in clean serif caps */}
-            <h1 className="font-serif-luxury text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide text-[#0C251C] uppercase mb-5 leading-snug">
+            <h1 className="font-serif-luxury text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide text-[#0C251C] uppercase mb-4 leading-snug">
               Ao novo conceito em espaço de festa de Jacobina.
             </h1>
 
-            <p className="text-base text-[#46574D] max-w-xl mb-8 leading-relaxed font-sans-ui">
+            <p className="text-sm sm:text-base text-[#46574D] max-w-xl mb-6 leading-relaxed font-sans-ui">
               O cenário perfeito para celebrar casamentos, 15 anos, aniversários e confraternizações.
               Ambientes integrados com piscina, salão fechado climatizado e toda a infraestrutura pronta
               para encantar seus convidados.
             </p>
 
-            {/* Iconic Capacity Hero Card - Exact design from Reference Flyer */}
-            <div className="w-full max-w-lg mb-8 rounded-2xl p-5 border border-[#C5A059]/40 bg-gradient-to-r from-[#0C251C] via-[#102F23] to-[#0A1F17] text-white shadow-md relative overflow-hidden">
+            {/* Iconic Capacity Hero Card */}
+            <div className="w-full max-w-lg mb-6 rounded-2xl p-4 sm:p-5 border border-[#C5A059]/40 bg-gradient-to-r from-[#0C251C] via-[#102F23] to-[#0A1F17] text-white shadow-md relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#C5A059]/10 rounded-full blur-2xl" />
               <div className="flex items-center gap-4 relative z-10">
                 <div className="w-14 h-14 rounded-xl bg-[#FAF7F2]/10 border border-[#C5A059]/40 flex items-center justify-center shrink-0">
@@ -186,8 +180,8 @@ export const Hero: React.FC = () => {
 
           {/* Right Column: Hero Visual Showcase (Tour em Vídeo) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl p-2 bg-gradient-to-b from-[#C5A059]/40 to-[#0C251C]/20 shadow-xl">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#0C251C] group">
+            <div className="relative max-w-[400px] mx-auto lg:ml-auto lg:mr-0">
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#0C251C] border border-[#C5A059]/45 shadow-2xl group">
                 <video
                   ref={videoRef}
                   src="/assets/tour_espaco_inovacao.mp4"
@@ -273,7 +267,7 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Floating Mini Highlight Card */}
-              <div className="absolute -bottom-5 -left-5 bg-white/95 backdrop-blur-md rounded-xl p-3.5 border border-[#C5A059]/30 shadow-lg hidden sm:flex items-center gap-3 max-w-xs">
+              <div className="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-md rounded-xl p-3.5 border border-[#C5A059]/30 shadow-lg hidden sm:flex items-center gap-3 max-w-xs z-20">
                 <div className="w-10 h-10 rounded-lg bg-[#FAF7F2] border border-[#C5A059]/40 flex items-center justify-center shrink-0">
                   <Wind className="w-5 h-5 text-[#0C251C]" />
                 </div>
