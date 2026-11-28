@@ -42,7 +42,7 @@ export const GallerySection: React.FC = () => {
   };
 
   return (
-    <section id="galeria" className="py-20 md:py-28 bg-[#FAF7F2]">
+    <section id="galeria" className="py-16 md:py-24 bg-white border-t border-[#C5A059]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
@@ -71,7 +71,7 @@ export const GallerySection: React.FC = () => {
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
                 activeCategory === cat.id
                   ? 'bg-[#0C251C] text-white border border-[#C5A059] shadow-sm'
-                  : 'bg-white text-[#46574D] border border-[#C5A059]/20 hover:border-[#C5A059]/60'
+                  : 'bg-[#FAF7F2] text-[#46574D] border border-[#C5A059]/25 hover:border-[#C5A059]/60'
               }`}
             >
               {cat.label}
@@ -128,7 +128,7 @@ export const GallerySection: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowAll(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0C251C] bg-white hover:bg-[#FAF7F2] border border-[#C5A059] transition-colors shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0C251C] bg-[#FAF7F2] hover:bg-white border border-[#C5A059] transition-colors shadow-sm cursor-pointer"
             >
               Ver todas as {filteredImages.length} fotos do espaço
             </button>

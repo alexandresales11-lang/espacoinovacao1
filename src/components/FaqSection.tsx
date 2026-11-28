@@ -14,7 +14,7 @@ export const FaqSection: React.FC = () => {
   )}`;
 
   return (
-    <section className="py-20 md:py-28 bg-[#FAF7F2]">
+    <section className="py-16 md:py-24 bg-[#FAF7F2]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C5A059] font-semibold mb-3">

@@ -68,28 +68,25 @@ Poderia me informar se essa data está disponível e como podemos agendar uma vi
   };
 
   return (
-    <section id="simulador" className="py-16 md:py-24 bg-[#0C251C] text-white relative">
-      {/* Visual background textures */}
-      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
+    <section id="simulador" className="py-16 md:py-24 bg-[#FAF7F2] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#E5C378] font-semibold mb-3">
-            <Sparkles className="w-4 h-4 text-[#E5C378]" />
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C5A059] font-semibold mb-3">
+            <Sparkles className="w-4 h-4 text-[#C5A059]" />
             <span>Ferramenta Tecnológica de Cotação</span>
           </div>
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
+          <h2 className="font-serif-luxury text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0C251C] mb-4">
             Simulador de Evento & Pré-Qualificação
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-sans-ui leading-relaxed">
+          <p className="text-[#46574D] text-sm sm:text-base font-sans-ui leading-relaxed">
             Personalize seu evento em 1 minuto. Veja a compatibilidade dos ambientes em tempo real
             e envie sua proposta já formatada direto para o WhatsApp da Konccy, sem burocracia!
           </p>
         </div>
 
         {/* Qualifier Card Container */}
-        <div className="bg-[#113125] border border-[#C5A059]/30 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl">
+        <div className="bg-[#0C251C] text-white border border-[#C5A059]/40 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl">
           <form onSubmit={handleSendToWhatsApp}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
               {/* Left Column: Interactive Controls */}

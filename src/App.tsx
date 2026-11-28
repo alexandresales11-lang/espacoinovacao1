@@ -16,9 +16,6 @@ const AmenitiesSection = lazy(() =>
 const EventQualifier = lazy(() =>
   import('./components/EventQualifier.tsx').then((m) => ({ default: m.EventQualifier }))
 );
-const PartyCalculator = lazy(() =>
-  import('./components/PartyCalculator.tsx').then((m) => ({ default: m.PartyCalculator }))
-);
 const GallerySection = lazy(() =>
   import('./components/GallerySection.tsx').then((m) => ({ default: m.GallerySection }))
 );
@@ -60,9 +57,6 @@ export default function App() {
 
           {/* Modern Interactive Pre-Qualification Tool */}
           <EventQualifier />
-
-          {/* Instant Practical Party & Drink Calculator */}
-          <PartyCalculator />
 
           {/* Real Photo Gallery with Lightbox */}
           <GallerySection />

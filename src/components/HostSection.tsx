@@ -1,6 +1,6 @@
 import React from 'react';
 import { VENUE_INFO, WHATSAPP_NUMBER, imgurThumb } from '../data/venueData.ts';
-import { Heart, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Heart, MessageCircle, CheckCircle2, Sparkles } from 'lucide-react';
 
 export const HostSection: React.FC = () => {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -8,7 +8,7 @@ export const HostSection: React.FC = () => {
   )}`;
 
   return (
-    <section className="py-20 md:py-28 bg-[#FAF7F2] relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#FAF7F2] border-t border-[#C5A059]/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl border border-[#C5A059]/30 p-8 sm:p-12 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -20,7 +20,7 @@ export const HostSection: React.FC = () => {
                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4] w-64 sm:w-72 shadow-xl bg-[#0C251C]">
                   <img
                     src={imgurThumb(VENUE_INFO.hostPhoto, 'h')}
-                    alt="Konccy - Fundadora e Gestora do Espaço Inovação"
+                    alt="Konccy - Fundadora, Gestora e Decoradora do Espaço Inovação"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"
@@ -34,7 +34,7 @@ export const HostSection: React.FC = () => {
                       {VENUE_INFO.hostName}
                     </span>
                     <span className="text-xs text-[#E5C378] tracking-wider uppercase font-medium">
-                      Anfitriã & Gestora
+                      Anfitriã, Gestora & Decoradora
                     </span>
                   </div>
                 </div>
@@ -58,12 +58,33 @@ export const HostSection: React.FC = () => {
                 se encontram com a natureza.
               </p>
 
-              <p className="text-[#46574D] text-sm sm:text-base leading-relaxed mb-8 font-sans-ui">
+              <p className="text-[#46574D] text-sm sm:text-base leading-relaxed mb-6 font-sans-ui">
                 Seja para o sonho de um casamento, a emoção de uma valsa de 15 anos, um aniversário
                 com piscina ou a confraternização da sua equipe, nosso compromisso é garantir que você
                 se preocupe apenas em comemorar. Nós garantimos o salão climatizado, mesas, cadeiras,
                 cozinha e toda a estrutura pronta.
               </p>
+
+              {/* Concise Optional Decoration Service Callout */}
+              <div className="w-full mb-7 rounded-2xl bg-[#FAF7F2] border border-[#C5A059]/40 p-4 sm:p-5">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-white border border-[#C5A059]/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Sparkles className="w-4 h-4 text-[#C5A059]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs sm:text-sm font-bold text-[#0C251C] mb-1">
+                      Decoração como serviço à parte (Opcional)
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#46574D] leading-relaxed font-sans-ui">
+                      Além da locação do espaço, a Konccy também atua como{' '}
+                      <strong className="text-[#0C251C]">decoradora</strong>. Você tem total
+                      liberdade para contratar sua decoração por fora, ou fechar o serviço
+                      diretamente com ela — com a praticidade de quem conhece cada detalhe do
+                      salão.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full mb-8">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#0C251C]">

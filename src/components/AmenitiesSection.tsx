@@ -25,10 +25,10 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const AmenitiesSection: React.FC = () => {
   return (
-    <section id="estrutura" className="py-20 md:py-28 bg-[#0C251C] text-white relative">
+    <section id="estrutura" className="py-16 md:py-24 bg-[#0C251C] text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-14">
           <span className="text-xs uppercase tracking-[0.25em] text-[#E5C378] font-semibold block mb-3">
             Infraestrutura Completa
           </span>
@@ -69,7 +69,7 @@ export const AmenitiesSection: React.FC = () => {
         </div>
 
         {/* Highlight quote banner */}
-        <div className="mt-16 text-center max-w-xl mx-auto">
+        <div className="mt-12 md:mt-14 text-center max-w-xl mx-auto">
           <p className="font-script-luxury text-3xl sm:text-4xl text-[#E5C378]">
             Feito para momentos inesquecíveis
           </p>

@@ -35,7 +35,7 @@ Podemos verificar se essa data está disponível?`;
   };
 
   return (
-    <section id="reserva" className="py-20 md:py-28 bg-[#0C251C] text-white relative">
+    <section id="reserva" className="py-16 md:py-24 bg-[#0C251C] text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <span className="text-xs uppercase tracking-[0.2em] text-[#E5C378] font-semibold block mb-2">

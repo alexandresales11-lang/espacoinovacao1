@@ -16,7 +16,7 @@ export const LocationSection: React.FC = () => {
     'https://maps.google.com/maps?q=Segunda+Travessa+S%C3%A3o+Francisco+de+Assis+Catuaba,+Jacobina+-+BA,+44700-000&t=&z=16&ie=UTF8&iwloc=&output=embed';
 
   return (
-    <section id="localizacao" className="py-20 md:py-28 bg-[#FAF7F2] border-t border-[#C5A059]/20">
+    <section id="localizacao" className="py-16 md:py-24 bg-white border-t border-[#C5A059]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Address Details */}
@@ -36,9 +36,9 @@ export const LocationSection: React.FC = () => {
             </p>
 
             {/* Address Box */}
-            <div className="w-full bg-white rounded-2xl border border-[#C5A059]/30 p-5 mb-6 shadow-sm">
+            <div className="w-full bg-[#FAF7F2] rounded-2xl border border-[#C5A059]/30 p-5 mb-6 shadow-sm">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#C5A059]/30 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white border border-[#C5A059]/30 flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5 text-[#0C251C]" />
                 </div>
                 <div className="flex-1">
@@ -51,7 +51,7 @@ export const LocationSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div className="mt-4 pt-3 border-t border-[#C5A059]/20 flex items-center justify-between">
                 <button
                   onClick={handleCopyAddress}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0C251C] hover:text-[#C5A059] transition-colors cursor-pointer"
@@ -74,11 +74,11 @@ export const LocationSection: React.FC = () => {
 
             {/* Perks */}
             <div className="grid grid-cols-2 gap-3 w-full mb-8">
-              <div className="flex items-center gap-2 p-3 rounded-xl bg-white border border-[#C5A059]/20 text-xs font-medium text-[#0C251C]">
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-[#FAF7F2] border border-[#C5A059]/25 text-xs font-medium text-[#0C251C]">
                 <Car className="w-4 h-4 text-[#C5A059] shrink-0" />
                 <span>Estacionamento no local</span>
               </div>
-              <div className="flex items-center gap-2 p-3 rounded-xl bg-white border border-[#C5A059]/20 text-xs font-medium text-[#0C251C]">
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-[#FAF7F2] border border-[#C5A059]/25 text-xs font-medium text-[#0C251C]">
                 <Shield className="w-4 h-4 text-[#C5A059] shrink-0" />
                 <span>Rua calma e segura</span>
               </div>
@@ -100,7 +100,7 @@ export const LocationSection: React.FC = () => {
                 href={VENUE_INFO.wazeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#0C251C] bg-white hover:bg-[#FAF7F2] rounded-xl border border-[#C5A059] transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#0C251C] bg-[#FAF7F2] hover:bg-white rounded-xl border border-[#C5A059] transition-colors shadow-sm"
               >
                 <ExternalLink className="w-4 h-4 text-[#C5A059]" />
                 <span>Navegar pelo Waze</span>

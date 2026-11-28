@@ -96,7 +96,7 @@ export const Hero: React.FC = () => {
   )}`;
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#FAF7F2]">
+    <section className="relative pt-24 pb-14 md:pt-32 md:pb-20 overflow-hidden bg-[#FAF7F2]">
       {/* Subtle warm glow background matching the reference flyer */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#F3E6CD]/60 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -287,7 +287,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* 6 Quick Features Grid - Directly Matching the Flyer Bottom Matrix */}
-        <div className="mt-14 pt-8 border-t border-[#C5A059]/25 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="mt-12 pt-8 border-t border-[#C5A059]/25 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/60 border border-[#C5A059]/20 hover:border-[#C5A059]/50 transition-colors">
             <TreePine className="w-6 h-6 text-[#C5A059] mb-2" />
             <span className="text-xs font-semibold text-[#0C251C] leading-tight">
